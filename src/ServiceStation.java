@@ -32,7 +32,7 @@ public class ServiceStation {
         System.out.println("Started " + numPumps + " pump thread(s).\n");
 
         // Create and start Car threads (producer stream)
-        System.out.println("--- Spawning arriving cars (template) ---");
+        System.out.println("--- Spawning arriving cars ---");
         Thread[] carThreads = new Thread[10];
         for (int i = 0; i < 10; i++) {
             Car car = new Car(i + 1, waitingQueue, empty, full, mutex);
@@ -50,8 +50,7 @@ public class ServiceStation {
             } catch (InterruptedException ignored) { }
         }
 
-        System.out.println("\nSimulation scaffold is ready. Colleagues should implement Semaphore, Car, and Pump.");
-        System.out.println("Note: Pump threads were started but do not perform work until implemented.");
+
     }
 
     private static int readIntInRange(Scanner scanner, String prompt, int min, int max) {
