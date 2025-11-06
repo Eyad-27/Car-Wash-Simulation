@@ -90,19 +90,26 @@ public class ServiceStation {
 
 // NOTE: Intentionally left as stubs. Implementations should follow the assignment specs.
 class Semaphore {
-    // Placeholder state if needed later
     private int value;
 
-    public Semaphore(int initialValue) {
-        this.value = initialValue;
+    Semaphore(int v) {
+        value = v;
     }
 
-    // TODO: Implement per assignment.
-    // Required signatures mentioned in the assignment are intentionally omitted here
-    // to avoid conflicts with Object.wait(). Add synchronized wait() and signal()
-    // with the exact semantics when you implement this class.
-}
+    synchronized void acquire() throws InterruptedException {
+        while (value == 0) wait();
+        value--;
+    }
 
+    synchronized void release() {
+        value++;
+        notify();
+    }
+
+    synchronized int getValue() {
+        return value;
+    }
+}
 class Car extends Thread {
     private final int id;
     private final Queue<Car> waitingQueue;
